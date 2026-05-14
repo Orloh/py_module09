@@ -26,6 +26,19 @@ class SpaceStation(BaseModel):
     notes: str | None = Field(default=None, max_length=200)
 
 
+def display_station(station: SpaceStation) -> None:
+    status = "Operational" if station.is_operational else "Non-Operational"
+    crew_label = "crew member" if station.crew_size == 1 else "crew members"
+
+    print(f"ID: {station.station_id}")
+    print(f"Name: {station.name}")
+    print(f"Crew: {station.crew_size} {crew_label}")
+    print(f"Power: {station.power_level:.1f}%")
+    print(f"Oxygen: {station.oxygen_level:.1f}%")
+    print(f"Status: {status}")
+    print()
+
+
 def main():
     print("Space Station Data Validation")
 
@@ -39,7 +52,7 @@ def main():
             last_maintenance=datetime.today(),
         )
         print("Valid station created:")
-        print(f"ID: {valid_station.station_id}")
+        display_station(valid_station)
 
     except ValidationError as e:
         print(f"Unexpected Error: {e}")
@@ -55,7 +68,7 @@ def main():
             last_maintenance=datetime.now()
         )
         print("Invalid station created:")
-        print(f"ID: {invalid_station.station_id}")
+        display_station(invalid_station)
     except ValidationError as e:
         print(e)
 
