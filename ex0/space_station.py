@@ -39,7 +39,7 @@ def display_station(station: SpaceStation) -> None:
     print()
 
 
-def main():
+def main() -> None:
     print("Space Station Data Validation")
 
     try:
