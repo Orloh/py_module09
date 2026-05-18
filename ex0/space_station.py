@@ -39,6 +39,14 @@ def display_station(station: SpaceStation) -> None:
     print()
 
 
+def print_validation_errors(exception: ValidationError) -> None:
+    for error in exception.errors():
+        field = "->".join(str(loc) for loc in error['loc'])
+        message = error['msg']
+
+        print(f"    • {field}: {message}")
+
+
 def main() -> None:
     print("Space Station Data Validation")
 
@@ -55,7 +63,8 @@ def main() -> None:
         display_station(valid_station)
 
     except ValidationError as e:
-        print(f"Unexpected Error: {e}")
+        print("Unexpected Error:")
+        print_validation_errors(e)
 
     print("\nExpected validation error:")
     try:
@@ -70,7 +79,7 @@ def main() -> None:
         print("Invalid station created:")
         display_station(invalid_station)
     except ValidationError as e:
-        print(e)
+        print_validation_errors(e)
 
 
 if __name__ == "__main__":
