@@ -80,10 +80,12 @@ def display_report(contact: AlienContact) -> None:
 
 def print_validation_errors(exception: ValidationError) -> None:
     for error in exception.errors():
-        field = "->".join(str(loc) for loc in error['loc'])
         message = error['msg']
-
-        print(f"    • {field}: {message}")
+        if error['loc']:
+            field = "->".join(str(loc) for loc in error['loc'])
+            print(f"    • {field}: {message}")
+        else:
+            print(f"    • {message}")
 
 
 def main() -> None:
