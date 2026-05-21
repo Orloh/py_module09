@@ -143,7 +143,7 @@ def main() -> None:
             rank=Rank.COMMANDER,
             age=45,
             specialization="Mission Command",
-            years_experience=3
+            years_experience=11
         ),
         CrewMember(
             member_id="LT02",
@@ -151,7 +151,7 @@ def main() -> None:
             rank=Rank.LIEUTENANT,
             age=32,
             specialization="Navigation",
-            years_experience=3
+            years_experience=5
         ),
         CrewMember(
             member_id="OFF03",
